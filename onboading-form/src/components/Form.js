@@ -29,7 +29,13 @@ export default function() {
             .string()
             .email("Must be a valid email address")
             .required(),
-        password: yup.string().required('Password is required'),
+        password: yup
+                .string()
+                .required('Password is required')
+                .matches(
+                    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+                    "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+                ),
         passwordConfirmation: yup.string()
             .oneOf([yup.ref('password'), null], 'Passwords must match'),
         terms: yup.boolean().oneOf([true], "Please see terms and Sevices")
