@@ -1,0 +1,41 @@
+/// <reference types="Cypress" />
+
+describe("Test form inputs", function () {
+    this.beforeEach(function() {
+        cy.visit("http://localhost:3000/")
+    })
+    it("adds text to inputs", function () {
+        cy.get('[data-cy="name"]')
+            .type("Nate")
+            .clear()            
+        cy.get('[data-cy="email"]')
+            .type("email")
+        cy.get('[data-cy="password"]')
+            .type("Hell0There!")
+            .should("have.value", "Hell0There!")
+        cy.get('[data-cy="passwordConfirmation"]')
+            .type("Hell0There!")
+            .should("have.value", "Hell0There!")
+        cy.get('[type="checkbox"]')
+            .check()
+            .should("be.checked")
+        cy.get('[data-cy="name"]')
+            .type("Nate")
+            .should("have.value", "Nate")
+        cy.get('[data-cy="email"]')
+            .clear()
+            .type("email@email.com")
+            .should("have.value", "email@email.com")
+        cy.contains('Submit')
+            .click()
+    })
+    // it('check validation message on invalid input', () => {
+    //     cy.get('input:invalid').should('have.length', 0)
+    //     cy.get('[type="email"]').type('not_an_email')
+    //     cy.get('[type="submit"]').click()
+    //     cy.get('input:invalid').should('have.length', 1)
+    //     cy.get('[type="email"]').then(($input) => {
+    //       expect($input[0].validationMessage).to.eq('I expect an email!')
+    //     })
+    //   })
+})

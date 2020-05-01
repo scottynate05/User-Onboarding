@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
-import Axios from "axios";
 import axios from "axios";
 
 export default function() {
@@ -21,7 +20,7 @@ export default function() {
         password: "",
         passwordConfirmation: "",
         terms: ""
-    });
+    });  
 
     const formSchema = yup.object().shape({
         name: yup.string().required("Name is required"),
@@ -101,6 +100,7 @@ export default function() {
                     name="name"
                     onChange={inputChange}
                     value={formState.name}
+                    data-cy="name"
                 />
                 {errors.name.length > 0 ? <p className="error">{"errors.name"}</p> : null}
             </label>
@@ -111,6 +111,7 @@ export default function() {
                     name="email"
                     onChange={inputChange}
                     value={formState.email}
+                    data-cy="email"
                 />
                 {errors.email.length > 0 ? <p className="error">{errors.email}</p> : null}
             </label>
@@ -121,6 +122,7 @@ export default function() {
                     name="password"
                     onChange={inputChange}
                     value={formState.password}
+                    data-cy="password"
                 />
                 {errors.password.length > 0 ? <p className="error">{errors.password}</p> : null}
             </label>
@@ -131,6 +133,7 @@ export default function() {
                     name="passwordConfirmation"
                     onChange={inputChange}
                     value={formState.passwordConfirmation}
+                    data-cy="passwordConfirmation"
                 />
                 {errors.passwordConfirmation.length > 0 ? <p className="error">{errors.passwordConfirmation}</p> : null}
             </label>
